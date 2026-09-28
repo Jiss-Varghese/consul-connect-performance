@@ -1,0 +1,21 @@
+{
+  "service": {
+    "name": "service-b",
+    "id": "service-b",
+    "address": "172.18.0.2",
+    "port": 8080,
+    "check": {
+      "http": "http://172.18.0.2:8080/health",
+      "interval": "10s",
+      "timeout": "2s"
+    },
+    "connect": {
+      "sidecar_service": {
+        "proxy": {
+          "local_service_address": "172.18.0.2",
+          "local_service_port": 8080
+        }
+      }
+    }
+  }
+}

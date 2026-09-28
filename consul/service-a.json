@@ -1,0 +1,13 @@
+{
+  "service": {
+    "name": "service-a",
+    "id": "service-a",
+    "address": "172.18.0.3",
+    "port": 8080,
+    "check": {
+      "http": "http://172.18.0.3:8080/health",
+      "interval": "10s",
+      "timeout": "2s"
+    }
+  }
+}
