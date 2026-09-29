@@ -168,18 +168,19 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
 ```
 
-    Service B provides: GET /health (for heaith checking)
+Service B provides: GET /health (for heaith checking)
 
-    And:
-    returns: Response from Service B
+And:
+returns: Response from Service B
 
-    The application listens on: 0.0.0.0:8080
+The application listens on: 0.0.0.0:8080
 
-    Part 5 — Create Service B Dockerfile
+Part 5 — Create Service B Dockerfile
 
 Run:
 
-code Dockerfile
+code Dockerfile<br>
+```text
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -192,10 +193,12 @@ EXPOSE 8080
 
 CMD ["python", "app.py"]
 
+```
+
 Build Service B
 
-docker build -t performance-service-b:latest .
-verify:
+docker build -t performance-service-b:latest .<br>
+verify:<br>
 docker images | grep performance-service-b
 
 Run Service B
@@ -204,7 +207,7 @@ docker run -d --name service-b --network performance-network performance-service
 
 docker ps
 
-Test Service B
+Test Service B<br>
 docker exec service-b python -c "import urllib.request; print(urllib.request.urlopen('http://localhost:8080/health').read().decode())"
 
 Service B is healthy
@@ -228,7 +231,7 @@ cd ~/Documents/consul-connect-performance/service-a
 Create:
 
 code app.py
-
+```text
 from flask import Flask
 import requests
 
@@ -251,6 +254,8 @@ def api():
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
 
+
+```
    Part 7 — Create Service A Dockerfile
 
     code Dockerfile
