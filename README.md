@@ -118,6 +118,7 @@ Part 3 — Create project directories
 Run:
 
 mkdir -p service-a service-b consul tests screenshots
+
 ```text
 consul-connect-performance/
 │
