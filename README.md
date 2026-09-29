@@ -258,19 +258,21 @@ if __name__ == "__main__":
 ```
    Part 7 — Create Service A Dockerfile
 
-    code Dockerfile
+code Dockerfile
 
     FROM python:3.12-slim
 
-WORKDIR /app
+    WORKDIR /app
 
-RUN pip install --no-cache-dir flask requests
+    RUN pip install --no-cache-dir flask requests
 
-COPY app.py .
+    COPY app.py .
 
-EXPOSE 8080
+    EXPOSE 8080
 
-CMD ["python", "app.py"]
+    CMD ["python", "app.py"]
+
+    ```
 
 Part 8 — Build Docker images for Service A
 docker build -t performance-service-a:latest .
@@ -289,7 +291,7 @@ docker run -d \
   -p 8080:8080 \
   performance-service-a:latest
 
-  docker ps
+  docker ps<br>
 Test Service A health
 
 curl http://localhost:8080/health
@@ -303,7 +305,7 @@ curl http://localhost:8080/api
 Service A received: Response from Service B
 
 It proves:
-
+```text
 Mac
  ↓
 Service A
@@ -312,7 +314,7 @@ Docker network
  ↓
 Service B
 
-
+```
 is working.
 
 Verify Service B directly from Service A
@@ -361,15 +363,15 @@ This is our baseline/direct communication architecture.
 
 
 
-docker ps
-curl http://localhost:8080/health
+docker ps<br>
+curl http://localhost:8080/health<br>
 curl http://localhost:8080/api
 
 Baseline Performance Test
 
 Now we need to measure the performance without Consul Connect.
 
-Check ApacheBench
+Check ApacheBench<br>
 ab -V
 
 ab -n 1000 -c 10 http://localhost:8080/api > Base_1000_10.txt
@@ -381,11 +383,11 @@ ab -n 1000 -c 10 http://localhost:8080/api > Base_1000_10_3.txt
 
 The first test also confirms:
 
-Failed requests: 0
-Requests/sec: 609.40
-Mean time/request: 16.410 ms
-50th percentile: 15 ms
-95th percentile: 20 ms
+Failed requests: 0<br>
+Requests/sec: 609.40<br>
+Mean time/request: 16.410 ms<br>
+50th percentile: 15 ms<br>
+95th percentile: 20 ms<br>
 Maximum: 54 ms
 
 | Test       | Requests | Concurrency | Requests/sec | Mean latency | Failed |
@@ -476,17 +478,18 @@ docker run -d \
 
   should see
 
-  . Services
-  . Nodes
-  . Key/Value
-  . ACLs
+  . Services<br>
+  . Nodes<br>
+  . Key/Value<br>
+  . ACLs<br>
   . Intentions
 
   curl http://localhost:8500/v1/status/leader
 
   Register Service B
 
-  Before we register it, let's verify the container's IP address. Run:
+  Before we register it, let's verify the container's IP address. 
+  Run:
 
   docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' service-b
 
@@ -505,7 +508,7 @@ docker run -d \
   Then create the registration file:
 
 code consul/service-b.json
-
+```text
 
 {
   "service": {
@@ -521,7 +524,7 @@ code consul/service-b.json
   }
 }
 
-
+```
 Register the service with Consul
 
 docker cp consul/service-b.json consul:/consul/service-b.json
@@ -566,16 +569,16 @@ curl "http://localhost:8500/v1/health/service/service-a?passing=true"
 Update Service B to enable Connect
 
 We currently registered Service B without a Connect proxy:
-
+```text
 Service B
 172.18.0.2:8080
     │
     └── Connect: not enabled yet
-
-    We'll first create a new Service B registration file with a Connect sidecar definition.
+```
+We'll first create a new Service B registration file with a Connect sidecar definition.
 
     code consul/service-b-connect.json
-
+```text
     
 {
   "service": {
@@ -598,7 +601,7 @@ Service B
     }
   }
 }
-
+```
 Copy the updated configuration into Consul
 
 docker cp consul/service-b-connect.json consul:/consul/service-b-connect.json
@@ -641,7 +644,7 @@ docker run -d \
   Register Service A's Connect sidecar
 
   code consul/service-a-connect.json
-
+```text
   {
   "service": {
     "name": "service-a",
@@ -670,7 +673,7 @@ docker run -d \
     }
   }
 }
-
+```
 docker cp consul/service-a-connect.json consul:/consul/service-a-connect.json
 
 docker exec consul consul services register /consul/service-a-connect.json
