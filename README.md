@@ -73,20 +73,20 @@ Service B :8080
 
 We then compare:
 
-Requests per second
-Average response time
-Failed requests
-95th percentile latency
-Maximum latency
-CPU usage
+Requests per second<br>
+Average response time<br>
+Failed requests<br>
+95th percentile latency<br>
+Maximum latency<br>
+CPU usage<br>
 Memory usage
 
 Part 1 — Prerequisites
 
-macOS
-Docker Desktop
-Terminal
-Python
+macOS<br>
+Docker Desktop<br>
+Terminal<br>
+Python<br>
 ApacheBench (ab)
 
 Check Docker:
@@ -105,7 +105,7 @@ Open Terminal.
 
 Create the project:
 
-mkdir -p ~/Documents/consul-connect-performance
+mkdir -p ~/Documents/consul-connect-performance<br>
 cd ~/Documents/consul-connect-performance
 
 
@@ -147,11 +147,11 @@ Part 4 — Create Service B
 
 Service B is the backend microservice.
 
-Create the file:
+Create the file:<br>
 cd ~/Documents/consul-connect-performance/service-b
 
 code app.py
-
+```text
 from flask import Flask
 
 app = Flask(__name__)
@@ -166,6 +166,7 @@ def api():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+```
 
     Service B provides: GET /health (for heaith checking)
 
