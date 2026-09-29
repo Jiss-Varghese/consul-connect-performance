@@ -37,7 +37,7 @@ consul-connect-performance/
 The goal is to measure the performance difference between:
 
 Test A — Without Consul Connect
-
+```text
 ApacheBench
      |
      v
@@ -46,9 +46,11 @@ Service A :8080
      | Direct HTTP
      v
 Service B :8080
+```
+
 
 Test B — With Consul Connect
-
+```text
 ApacheBench
      |
      v
@@ -66,6 +68,8 @@ Service B Connect Proxy :21000
      |
      v
 Service B :8080
+
+```
 
 We then compare:
 
@@ -114,7 +118,7 @@ Part 3 — Create project directories
 Run:
 
 mkdir -p service-a service-b consul tests screenshots
-
+```text
 consul-connect-performance/
 │
 ├── service-a/
@@ -132,7 +136,7 @@ consul-connect-performance/
 │   └── service-b-connect.json
 │
 └── tests/
-
+```
 Create Docker network
 
 docker network create performance-network
