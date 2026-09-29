@@ -838,19 +838,19 @@ Memory:
 
 The proxies therefore add about 0.21% CPU and 67.05 MiB of container memory at the instant captured by docker stats.
 
-For comparison, your earlier baseline snapshot had:
+For comparison,  earlier baseline snapshot had:
 
 Service A: 0.03% CPU, 28.62 MiB
 Service B: 0.03% CPU, 32.69 MiB
 
-However, these are point-in-time snapshots, not measurements averaged over the entire ApacheBench run, so we shouldn't treat them as precise benchmark averages.
+However, these are point-in-time snapshots, not measurements averaged over the entire ApacheBench run, so shouldn't treat them as precise benchmark averages.
 
 
 
 
 grep -E "Time taken|Complete requests|Failed requests|Requests per second|Time per request" Mesh_1000_10.txt Mesh_1000_10_2.txt Mesh_1000_10_3.txt
 
-Collect detailed latency results
+ Detailed latency results
 
 Run:
 
