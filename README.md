@@ -1,7 +1,7 @@
 Project: Test and Document Consul Connect Performance Impact on Microservices Communication
 
 Final project structure
-
+```text
 consul-connect-performance/
 │
 ├── service-a/
@@ -31,7 +31,7 @@ consul-connect-performance/
 │
 └── README.md
 
-
+```
 1. Project objective
 
 The goal is to measure the performance difference between:
