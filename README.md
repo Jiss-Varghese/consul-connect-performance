@@ -850,6 +850,11 @@ However, these are point-in-time snapshots, not measurements averaged over the e
 
 grep -E "Time taken|Complete requests|Failed requests|Requests per second|Time per request" Mesh_1000_10.txt Mesh_1000_10_2.txt Mesh_1000_10_3.txt
 
+
+grep -E "Time taken|Complete requests|Failed requests|Requests per second|Time per request" Base_1000_10.txt Base_1000_10_2.txt Base_1000_10_3.txt
+
+
+
  Detailed latency results
 
 Run:
